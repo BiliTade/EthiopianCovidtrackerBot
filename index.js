@@ -10,7 +10,9 @@
 
 bot.start((ctx)=>{
     let engWelcome=
-    `Hey,<b> ${ctx.from.first_name} </b> , Welcome  To CovidGuy Bot!
+    `Hey 😁😍,<b> ${ctx.from.first_name} </b>! Welcome  \To CovidGuy Bot!
+     \Using this bot you can get Covid-19 status in Ethiopia & also 
+     \In The World. \To \start just click \one of the Following Button
      
      \
 
@@ -23,8 +25,6 @@ bot.start((ctx)=>{
 
               [{ text:' Ethiopia 🇪🇹', callback_data:'ethiopia' }],
               [{ text:'World 🌎', callback_data:'world' }],
-              [{ text:'vaccine Phases 💉', callback_data:'phase' }],
-              [{ text:'vaccine info 🔬', callback_data:'info' }],
               [{ text:'About 👨‍💻', callback_data:'about' }],
               
           ]
@@ -49,7 +49,7 @@ bot.telegram.sendMessage(ctx.chat.id, `Get Covid-19 status in Ethiopia\n`,{
             [{ text:' Current status', callback_data:'ecurrent' }],
             [{ text:' Yesterday status', callback_data:'eyesterday' }],
             [{ text:' 2 Days Ago', callback_data:'etwodays' }],
-            [{ text:'Back To Home', callback_data:'back' }],
+            [{ text:'Back To Home🔙', callback_data:'back' }],
            
             
         ]
@@ -116,14 +116,14 @@ bot.action ('ecurrent',async(ctx)=>{
       `;
       ctx.answerCbQuery('clicked')
       bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-      bot.telegram.sendMessage(ctx.from.id , Message, {
+      bot.telegram.sendMessage(ctx.chat.id , Message, {
           
         reply_markup:{
 
             inline_keyboard:[
 
-                [{ text:'Back To Home', callback_data:'back' }],
-                [{ text:'Clear Table', callback_data:'erase' }],
+                [{ text:'Back To Home🔙', callback_data:'back' }],
+                [{ text:'Clear Table❌', callback_data:'erase' }],
             ]
     
           },
@@ -166,12 +166,10 @@ bot.action ('eyesterday',async(ctx)=>{
        let last =dateFormat(new Date(res.data.updated), "dddd, mmmm dS, yyyy, h:MM:ss TT")
 
        let Message=`
-        \n
-       *   Yesterday Covid-19 \Case in Ethiopia*
-       
+     
+       Yesterday covid-19 status In Ethiopia
        \`
        
-
        +-----------------------------+
        | Today  \Case       | ${tdc}                 
        +-----------------------------+
@@ -197,14 +195,14 @@ bot.action ('eyesterday',async(ctx)=>{
       `;
       ctx.answerCbQuery('clicked')
       bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-      bot.telegram.sendMessage(ctx.from.id , Message, {
+      bot.telegram.sendMessage(ctx.chat.id , Message, {
           
         reply_markup:{
 
             inline_keyboard:[
 
-                [{ text:'Clear Table', callback_data:'erase' }],
-                [{ text:'Back To Home', callback_data:'back' }],
+                [{ text:'Clear Table❌', callback_data:'erase' }],
+                [{ text:'Back To Home🔙', callback_data:'back' }],
             ]
     
           },
@@ -244,45 +242,43 @@ bot.action ('eyesterday',async(ctx)=>{
            let last =dateFormat(new Date(res.data.updated), "dddd, mmmm dS, yyyy, h:MM:ss TT")
     
            let Message=`
-            \n
-           *   Yesterday Covid-19 \Case in Ethiopia*
-           
-           \`
-           
+     
+       2Days ago -Covid status in Ethiopia
+       \`
+       
+       +-----------------------------+
+       | Today  \Case       | ${tdc}                 
+       +-----------------------------+
+       | Today Death       | ${tdd}                 
+       +-----------------------------+
+       | Total Death       | ${D}                 
+       +-----------------------------+
+       | Total Cases       | ${C}                 
+       +-----------------------------+    
+       | critical Patient  | ${cr}                 
+       +-----------------------------+    
+       | Today Recovered   | ${tRec}                 
+       +-----------------------------+    
+       | Total Recovered   | ${Re}                 
+       +-----------------------------+
+       | Total Lab Exam    | ${T}                 
+       +-----------------------------+
+       | Population        | ${P}                 
+       +-----------------------------+
+       \`
     
-           +-----------------------------+
-           | Today  \Case       | ${tdc}                 
-           +-----------------------------+
-           | Today Death       | ${tdd}                 
-           +-----------------------------+
-           | Total Death       | ${D}                 
-           +-----------------------------+
-           | Total Cases       | ${C}                 
-           +-----------------------------+    
-           | critical Patient  | ${cr}                 
-           +-----------------------------+    
-           | Today Recovered   | ${tRec}                 
-           +-----------------------------+    
-           | Total Recovered   | ${Re}                 
-           +-----------------------------+
-           | Total Lab Exam    | ${T}                 
-           +-----------------------------+
-           | Population        | ${P}                 
-           +-----------------------------+
-           \`
-        
-          
-          `;
+      
+      `;
           ctx.answerCbQuery('clicked')
           bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-          bot.telegram.sendMessage(ctx.from.id , Message, {
+          bot.telegram.sendMessage(ctx.chat.id , Message, {
               
             reply_markup:{
     
                 inline_keyboard:[
     
-                    [{ text:'Clear Table', callback_data:'erase' }],
-                    [{ text:'Back To Home', callback_data:'back' }],
+                    [{ text:'Clear Table❌', callback_data:'erase' }],
+                    [{ text:'Back To Home🔙', callback_data:'back' }],
                 ]
         
               },
@@ -315,14 +311,12 @@ bot.telegram.sendMessage(ctx.chat.id, `current covid status  WorldWide\n`,{
 
         inline_keyboard:[
 
-            [{ text:'New Case Rank', callback_data:'caseRank' },
-            { text:' New Death Rank', callback_data:'deathRank' },
-            { text:' Total Death Rank', callback_data:'totaldeathRank' },
-            { text:' Total Case Rank', callback_data:'totalRank' }
-        
-        ],
-            [{ text:' Total World', callback_data:'totalworld' }],
-            [{ text:'Back To Home', callback_data:'back' }],
+           [{ text:'New Case Rank', callback_data:'caseRank' }],
+           [{ text:' New Death Rank', callback_data:'deathRank' }],
+           [{ text:' Total Death Rank', callback_data:'totaldeathRank' }],
+           [{ text:' Total Case Rank', callback_data:'totalRank' }],
+           [{ text:' Total World', callback_data:'totalworld' }],
+           [{ text:'Back To Home🔙', callback_data:'back' }],
            
             
         ]
@@ -351,7 +345,7 @@ bot.action ('totalRank',(ctx)=>{
 
        
        
-       let Message=``;
+       let Message=` Rank of countries based TotalCase \n `;
 
        
         for (var i=0; i<=60;i++)
@@ -370,14 +364,14 @@ bot.action ('totalRank',(ctx)=>{
        
       ctx.answerCbQuery('clicked')
       bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-      bot.telegram.sendMessage(ctx.from.id , Message, {
+      bot.telegram.sendMessage(ctx.chat.id , Message, {
           
         reply_markup:{
 
             inline_keyboard:[
 
-                [{ text:'Clear Table', callback_data:'erase' }],
-                [{ text:'Back To Home', callback_data:'back' }],
+                [{ text:'Clear Table❌', callback_data:'erase' }],
+                [{ text:'Back To Home🔙', callback_data:'back' }],
             ]
     
           },
@@ -408,7 +402,7 @@ bot.action ('totalRank',(ctx)=>{
     
            
            
-           let Message=``;
+           let Message=` Rank of countries based on TodayCase`;
     
            
             for (var i=0; i<=60;i++)
@@ -427,14 +421,14 @@ bot.action ('totalRank',(ctx)=>{
            
           ctx.answerCbQuery('clicked')
           bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-          bot.telegram.sendMessage(ctx.from.id , Message, {
+          bot.telegram.sendMessage(ctx.chat.id , Message, {
               
             reply_markup:{
     
                 inline_keyboard:[
     
-                    [{ text:'Clear Table', callback_data:'erase' }],
-                    [{ text:'Back To Home', callback_data:'back' }],
+                    [{ text:'Clear Table❌', callback_data:'erase' }],
+                    [{ text:'Back To Home🔙', callback_data:'back' }],
                 ]
         
               },
@@ -462,7 +456,7 @@ bot.action ('totalRank',(ctx)=>{
         
                
                
-               let Message=``;
+               let Message=` Rank of countries based Today Death`;
         
                
                 for (var i=0; i<=60;i++)
@@ -481,14 +475,14 @@ bot.action ('totalRank',(ctx)=>{
                
               ctx.answerCbQuery('clicked')
               bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-              bot.telegram.sendMessage(ctx.from.id , Message, {
+              bot.telegram.sendMessage(ctx.chat.id , Message, {
                   
                 reply_markup:{
         
                     inline_keyboard:[
         
-                        [{ text:'Clear Table', callback_data:'erase' }],
-                        [{ text:'Back To Home', callback_data:'back' }],
+                        [{ text:'Clear Table❌', callback_data:'erase' }],
+                        [{ text:'Back To Home 🔙', callback_data:'back' }],
                     ]
             
                   },
@@ -537,14 +531,14 @@ bot.action ('totalRank',(ctx)=>{
        
       ctx.answerCbQuery('clicked')
       bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-      bot.telegram.sendMessage(ctx.from.id , Message, {
+      bot.telegram.sendMessage(ctx.chat.id , Message, {
           
         reply_markup:{
 
             inline_keyboard:[
 
-                [{ text:'Clear Table', callback_data:'erase' }],
-                [{ text:'Back To Home', callback_data:'back' }],
+                [{ text:'Clear Table❌', callback_data:'erase' }],
+                [{ text:'Back To Home🔙', callback_data:'back' }],
             ]
     
           },
@@ -562,9 +556,115 @@ bot.action ('totalRank',(ctx)=>{
 
     
     })
-     
-    
 
+
+
+    bot.action ('totalworld',async(ctx)=>{
+
+        const sendGetRequest = async () => {
+            try {
+                const res = await axios.get('https://disease.sh/v3/covid-19/all');
+             
+           let C=res.data.cases    
+           let tdc=res.data.todayCases;
+           let tdd=res.data.todayDeaths;
+           let D=res.data.deaths;
+           let Re=res.data.recovered;
+           let tRec=res.data.todayRecovered;
+           let active=res.active;
+           let cr=res.data.critical;
+           let  T=res.data.tests;
+           let  P=res.data.population;
+    
+    
+           let last =dateFormat(new Date(res.data.updated), "dddd, mmmm dS, yyyy, h:MM:ss TT")
+           let Message=`
+     
+           \`
+           +-------------------------+
+           | Today  \Case| ${tdc}                 
+           +--------------------------+
+           | Today Death | ${tdd}                 
+           +--------------------------+
+           | Total Death | ${D}                 
+           +--------------------------+
+           | Total Cases | ${C}                 
+           +--------------------------+    
+           | critical Patient| ${cr}                 
+           +--------------------------+    
+           | Today Recovered | ${tRec}                 
+           +--------------------------+    
+           | Total Recovered | ${Re}                 
+           +--------------------------+
+           | Total Lab Exam | ${T}                 
+           +--------------------------+
+           | Population   | ${P}                 
+           +--------------------------+
+           \`
+        
+          
+          `;
+    
+      
+
+          ctx.answerCbQuery('clicked')
+          bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+          bot.telegram.sendMessage(ctx.chat.id , Message, {
+            
+            reply_markup:{
+    
+                inline_keyboard:[
+    
+                    [{ text:'Clear Table❌', callback_data:'erase' }],
+                    [{ text:'Back To Home🔙', callback_data:'back' }],
+                ]
+        
+              },
+        
+            
+            parse_mode:'Markdown'} )
+    
+            } catch (err) {
+                // Handle Error Here
+                console.error(" some error ocured "+err);
+            }
+        };
+        
+        sendGetRequest();
+    
+        
+        }) 
+     
+        bot.action ('about', async(ctx)=>{
+            let engWelcome=
+            ` Yo🤘 Thanks for Using the Bot.If you have
+             \any Comments \Use the Following Button.
+             Also , dont forget \-to subscribe \-to my
+             youtube \and Telegram channel.
+            `;
+        
+        ctx.answerCbQuery('clicked')
+        ctx.deleteMessage();
+        bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+        bot.telegram.sendMessage(ctx.chat.id, engWelcome, {
+                
+            reply_markup:{
+        
+              inline_keyboard:[
+        
+                  [{ text:'YouTube ▶️', url:'https://www.youtube.com/ilovetech1' }],
+                  [{ text:'Telegram Channel 📱 ',url:'t.me/ilovetech1' }],
+                  [{ text:'My Account 🧔🏾', url:'t.me/BiliTade'}],
+                  [{ text:'Back To Home 🔙', callback_data:'back' }],
+                  
+              ]
+        
+            },
+        
+            parse_mode:'HTML'})
+        
+        })
+        
 
 
 
@@ -601,8 +701,6 @@ bot.telegram.sendMessage(ctx.chat.id, engWelcome, {
 
           [{ text:' Ethiopia 🇪🇹', callback_data:'ethiopia' }],
           [{ text:'World 🌎', callback_data:'world' }],
-          [{ text:'vaccine Phases 💉', callback_data:'phase' }],
-          [{ text:'vaccine info 🔬', callback_data:'info' }],
           [{ text:'About 👨‍💻', callback_data:'about' }],
           
       ]
@@ -610,10 +708,6 @@ bot.telegram.sendMessage(ctx.chat.id, engWelcome, {
     },
 
     parse_mode:'HTML'})
-
-
-
-
 
 })
 
