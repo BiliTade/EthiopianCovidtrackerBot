@@ -317,6 +317,7 @@ bot.telegram.sendMessage(ctx.chat.id, `current covid status  WorldWide\n`,{
 
             [{ text:'New Case Rank', callback_data:'caseRank' },
             { text:' New Death Rank', callback_data:'deathRank' },
+            { text:' Total Death Rank', callback_data:'totaldeathRank' },
             { text:' Total Case Rank', callback_data:'totalRank' }
         
         ],
@@ -394,14 +395,186 @@ bot.action ('totalRank',(ctx)=>{
 
     
     })
+
+
+
+// new case  rank arround the world
+    bot.action ('caseRank',(ctx)=>{
+
+        const sendGetRequest = async () => {
+            try {
+                const res = await axios.get('https://disease.sh/v3/covid-19/countries?sort=todayCases&allowNull=0');
+      
     
+           
+           
+           let Message=``;
+    
+           
+            for (var i=0; i<=60;i++)
+            {
+    
+              var obj=res.data[i];
+    
+            Message+=`\`\n +-----------------------------+\n`
+                     +(i+1)+' '+ obj.country +   '-----'+ obj.todayCases+` \`\n`
+    
+            }
+    
+    
+    
+    
+           
+          ctx.answerCbQuery('clicked')
+          bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+          bot.telegram.sendMessage(ctx.from.id , Message, {
+              
+            reply_markup:{
+    
+                inline_keyboard:[
+    
+                    [{ text:'Clear Table', callback_data:'erase' }],
+                    [{ text:'Back To Home', callback_data:'back' }],
+                ]
+        
+              },
+        
+            
+            parse_mode:'Markdown'} )
+    
+            } catch (err) {
+                // Handle Error Here
+                console.error(" some error ocured "+err);
+            }
+        };
+        
+        sendGetRequest();
+    
+        
+        })
+        // new death rank   
+        bot.action ('deathRank',(ctx)=>{
+
+            const sendGetRequest = async () => {
+                try {
+                    const res = await axios.get('https://disease.sh/v3/covid-19/countries?sort=todayDeaths&allowNull=0');
+          
+        
+               
+               
+               let Message=``;
+        
+               
+                for (var i=0; i<=60;i++)
+                {
+        
+                  var obj=res.data[i];
+        
+                Message+=`\`\n +-----------------------------+\n`
+                         +(i+1)+' '+ obj.country +   '-----'+ obj.todayDeaths+` \`\n`
+        
+                }
+        
+        
+        
+        
+               
+              ctx.answerCbQuery('clicked')
+              bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+              bot.telegram.sendMessage(ctx.from.id , Message, {
+                  
+                reply_markup:{
+        
+                    inline_keyboard:[
+        
+                        [{ text:'Clear Table', callback_data:'erase' }],
+                        [{ text:'Back To Home', callback_data:'back' }],
+                    ]
+            
+                  },
+            
+                
+                parse_mode:'Markdown'} )
+        
+                } catch (err) {
+                    // Handle Error Here
+                    console.error(" some error ocured "+err);
+                }
+            };
+            
+            sendGetRequest();
+        
+            
+            })
+
+
+   // total death rank
+   bot.action ('totaldeathRank',(ctx)=>{
+
+    const sendGetRequest = async () => {
+        try {
+            const res = await axios.get('https://disease.sh/v3/covid-19/countries?sort=deaths&allowNull=1');
+  
+
+       
+       
+       let Message=``;
+
+       
+        for (var i=0; i<=60;i++)
+        {
+
+          var obj=res.data[i];
+
+        Message+=`\`\n +-----------------------------+\n`
+                 +(i+1)+' '+ obj.country +   '-----'+ obj.deaths+` \`\n`
+
+        }
+
+
+
+
+       
+      ctx.answerCbQuery('clicked')
+      bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+      bot.telegram.sendMessage(ctx.from.id , Message, {
+          
+        reply_markup:{
+
+            inline_keyboard:[
+
+                [{ text:'Clear Table', callback_data:'erase' }],
+                [{ text:'Back To Home', callback_data:'back' }],
+            ]
+    
+          },
+    
+        
+        parse_mode:'Markdown'} )
+
+        } catch (err) {
+            // Handle Error Here
+            console.error(" some error ocured "+err);
+        }
+    };
+    
+    sendGetRequest();
+
+    
+    })
+     
+    
+
+
+
+
+
+    
+//   used to delete output printed as table
 
     bot.action('erase',ctx=>{
         ctx.deleteMessage();
         ctx.answerCbQuery('deleted')
-      
-      
-      
       
       })
 
