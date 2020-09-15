@@ -98,7 +98,7 @@ bot.telegram.sendMessage(ctx.chat.id, engWelcome, {
 
 })
 // used to clear message above the clear  keyboard
-bot.action('clear',ctx=>{
+bot.action('erase',ctx=>{
   ctx.deleteMessage();
   ctx.answerCbQuery('deleted')
 
@@ -165,7 +165,7 @@ bot.action ('ecurrent',async(ctx)=>{
             inline_keyboard:[
 
                 [{ text:'Back To Home', callback_data:'back' }],
-                [{ text:'Clear Table', callback_data:'clear' }],
+                [{ text:'Clear Table', callback_data:'erase' }],
             ]
     
           },
@@ -264,36 +264,85 @@ bot.action ('eyesterday',async(ctx)=>{
 
     
     })
+    //  get ethiopian status  of 2days ago 
+    bot.action ('etwodays',async(ctx)=>{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        const sendGetRequest = async () => {
+            try {
+                const res = await axios.get('https://disease.sh/v3/covid-19/countries/Ethiopia?twoDaysAgo=true&strict=true&allowNull=true');
+             
+           let C=res.data.cases    
+           let tdc=res.data.todayCases;
+           let tdd=res.data.todayDeaths;
+           let D=res.data.deaths;
+           let Re=res.data.recovered;
+           let tRec=res.data.todayRecovered;
+           let active=res.active;
+           let cr=res.data.critical;
+           let  T=res.data.tests;
+           let  P=res.data.population;
+    
+    
+           let last =dateFormat(new Date(res.data.updated), "dddd, mmmm dS, yyyy, h:MM:ss TT")
+    
+           let Message=`
+            \n
+           *   Yesterday Covid-19 \Case in Ethiopia*
+           
+           \`
+           
+    
+           +-----------------------------+
+           | Today  \Case       | ${tdc}                 
+           +-----------------------------+
+           | Today Death       | ${tdd}                 
+           +-----------------------------+
+           | Total Death       | ${D}                 
+           +-----------------------------+
+           | Total Cases       | ${C}                 
+           +-----------------------------+    
+           | critical Patient  | ${cr}                 
+           +-----------------------------+    
+           | Today Recovered   | ${tRec}                 
+           +-----------------------------+    
+           | Total Recovered   | ${Re}                 
+           +-----------------------------+
+           | Total Lab Exam    | ${T}                 
+           +-----------------------------+
+           | Population        | ${P}                 
+           +-----------------------------+
+           \`
+        
+          
+          `;
+          ctx.answerCbQuery('clicked')
+          bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+          bot.telegram.sendMessage(ctx.from.id , Message, {
+              
+            reply_markup:{
+    
+                inline_keyboard:[
+    
+                    [{ text:'Clear Table', callback_data:'erase' }],
+                    [{ text:'Back To Home', callback_data:'back' }],
+                ]
+        
+              },
+        
+            
+            parse_mode:'Markdown'} )
+    
+            } catch (err) {
+                // Handle Error Here
+                console.error(" some error ocured "+err);
+            }
+        };
+        
+        sendGetRequest();
+    
+        
+        })
+    
 
 // for world callback
 
@@ -329,7 +378,6 @@ bot.telegram.sendMessage(ctx.chat.id, `current covid status  WorldWide\n`,{
 
 
 } )
-
 
 
 
