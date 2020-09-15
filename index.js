@@ -61,51 +61,9 @@ bot.telegram.sendMessage(ctx.chat.id, `Get Covid-19 status in Ethiopia\n`,{
 
 } )
 
-//  callback action to back to main menu,
-bot.action ('back', async(ctx)=>{
-    let engWelcome=
-    `Hey,<b> ${ctx.from.first_name} </b> , Welcome  To CovidGuy Bot!
-     
-     \
 
-
-    `;
-
-ctx.answerCbQuery('clicked')
-ctx.deleteMessage();
-bot.telegram.sendChatAction(ctx.chat.id, 'typing');
-bot.telegram.sendMessage(ctx.chat.id, engWelcome, {
-        
-    reply_markup:{
-
-      inline_keyboard:[
-
-          [{ text:' Ethiopia 🇪🇹', callback_data:'ethiopia' }],
-          [{ text:'World 🌎', callback_data:'world' }],
-          [{ text:'vaccine Phases 💉', callback_data:'phase' }],
-          [{ text:'vaccine info 🔬', callback_data:'info' }],
-          [{ text:'About 👨‍💻', callback_data:'about' }],
-          
-      ]
-
-    },
-
-    parse_mode:'HTML'})
-
-
-
-
-
-})
 // used to clear message above the clear  keyboard
-bot.action('erase',ctx=>{
-  ctx.deleteMessage();
-  ctx.answerCbQuery('deleted')
 
-
-
-
-})
 
 //current status of ethiopian covid 19 case 
 bot.action ('ecurrent',async(ctx)=>{
@@ -357,10 +315,13 @@ bot.telegram.sendMessage(ctx.chat.id, `current covid status  WorldWide\n`,{
 
         inline_keyboard:[
 
-            [{ text:' Current status', callback_data:'ethiopia' }],
-            [{ text:' Yesterday status', callback_data:'neighbour' }],
-            [{ text:' 2 Days Ago', callback_data:'world' }],
-            [{ text:'Back To Home', callback_data:'world' }],
+            [{ text:'New Case Rank', callback_data:'caseRank' },
+            { text:' New Death Rank', callback_data:'deathRank' },
+            { text:' Total Case Rank', callback_data:'totalRank' }
+        
+        ],
+            [{ text:' Total World', callback_data:'totalworld' }],
+            [{ text:'Back To Home', callback_data:'back' }],
            
             
         ]
@@ -378,6 +339,111 @@ bot.telegram.sendMessage(ctx.chat.id, `current covid status  WorldWide\n`,{
 
 
 } )
+
+
+bot.action ('totalRank',(ctx)=>{
+
+    const sendGetRequest = async () => {
+        try {
+            const res = await axios.get('https://disease.sh/v3/covid-19/countries?sort=cases');
+  
+
+       
+       
+       let Message=``;
+
+       
+        for (var i=0; i<=60;i++)
+        {
+
+          var obj=res.data[i];
+
+        Message+=`\`\n +-----------------------------+\n`
+                 +(i+1)+' '+ obj.country +   '-----'+ obj.cases+` \`\n`
+
+        }
+
+
+
+
+       
+      ctx.answerCbQuery('clicked')
+      bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+      bot.telegram.sendMessage(ctx.from.id , Message, {
+          
+        reply_markup:{
+
+            inline_keyboard:[
+
+                [{ text:'Clear Table', callback_data:'erase' }],
+                [{ text:'Back To Home', callback_data:'back' }],
+            ]
+    
+          },
+    
+        
+        parse_mode:'Markdown'} )
+
+        } catch (err) {
+            // Handle Error Here
+            console.error(" some error ocured "+err);
+        }
+    };
+    
+    sendGetRequest();
+
+    
+    })
+    
+
+    bot.action('erase',ctx=>{
+        ctx.deleteMessage();
+        ctx.answerCbQuery('deleted')
+      
+      
+      
+      
+      })
+
+
+
+      //  callback action to back to main menu,
+bot.action ('back', async(ctx)=>{
+    let engWelcome=
+    `Hey,<b> ${ctx.from.first_name} </b> , Welcome  To CovidGuy Bot!
+     
+     \
+
+
+    `;
+
+ctx.answerCbQuery('clicked')
+ctx.deleteMessage();
+bot.telegram.sendChatAction(ctx.chat.id, 'typing');
+bot.telegram.sendMessage(ctx.chat.id, engWelcome, {
+        
+    reply_markup:{
+
+      inline_keyboard:[
+
+          [{ text:' Ethiopia 🇪🇹', callback_data:'ethiopia' }],
+          [{ text:'World 🌎', callback_data:'world' }],
+          [{ text:'vaccine Phases 💉', callback_data:'phase' }],
+          [{ text:'vaccine info 🔬', callback_data:'info' }],
+          [{ text:'About 👨‍💻', callback_data:'about' }],
+          
+      ]
+
+    },
+
+    parse_mode:'HTML'})
+
+
+
+
+
+})
+
 
 
 
