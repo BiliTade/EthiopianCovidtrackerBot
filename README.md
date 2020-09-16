@@ -54,9 +54,9 @@
 const express = require('express') \
 const expressApp = express() \
 
-const API_TOKEN = process.env.API_TOKEN || 'copy paste your Bot token given to you by fatherbot'; \
+const API_TOKEN = process.env.API_TOKEN || 'copy paste your Bot token given to you by fatherbot';  \
 const PORT = process.env.PORT || 5000;   
-const URL = process.env.URL || 'https://< your heroku app name >.herokuapp.com';\
+const URL = process.env.URL || 'https://< your heroku app name >.herokuapp.com';   \
 
 const bot = new Telegraf(API_TOKEN);
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
@@ -65,12 +65,12 @@ expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 // ALL your  bot command will be here  \
 // remove bot.launch() you wont use it! because your are using webhook\
 
-expressApp.get('/', (req, res) => { \
-  res.send('my bot is running!')\
+expressApp.get('/', (req, res) => {    \
+  res.send('my bot is running!')     \
 })
 
-expressApp.listen(PORT, () => { \
-  console.log('Example app listening on port ${PORT}!')\
+expressApp.listen(PORT, () => {   \
+  console.log('Example app listening on port ${PORT}!')   \
 })
          
          ...
