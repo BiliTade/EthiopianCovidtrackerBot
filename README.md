@@ -1,4 +1,5 @@
 # EthiopianCovidtrackerBot
+
 ## I created this bot for Telegram users 
 
  To deploy my bot i used the following step ⬇️
@@ -46,18 +47,23 @@
 const express = require('express') \
 const expressApp = express() \
 
-const bot = new Telegraf(process.env.BOT_TOKEN) \
-expressApp.use(bot.webhookCallback('/secret-path')) \
-bot.telegram.setWebhook('https://server.tld:8443/secret-path')\
+const API_TOKEN = process.env.API_TOKEN || 'copy paste your Bot token given to you by fatherbot'; \n
+const PORT = process.env.PORT || 5000;   
+const URL = process.env.URL || 'https://< your heroku app name >.herokuapp.com';\n
+
+const bot = new Telegraf(API_TOKEN);
+bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+
 // ALL your  bot command will be here  \
-// remove bot.launch. you wont you sit because your are using webhook\
+// remove bot.launch() you wont use it! because your are using webhook\
 
 expressApp.get('/', (req, res) => { \
-  res.send('Hello World!')\
+  res.send('my bot is running!')\
 })
 
-expressApp.listen(3000, () => { \
-  console.log('Example app listening on port 3000!')\
+expressApp.listen(PORT, () => { \
+  console.log('Example app listening on port ${PORT}!')\
 })
          
          ...
