@@ -1,7 +1,7 @@
 # EthiopianCovidtrackerBot
 ## I created this bot for Telegram users 
 
- To deploy my bot 
+ To deploy my bot i used the following step ⬇️
 # Steps to host your Telegram bot
 ## Heroku:
 
@@ -11,7 +11,6 @@
 - [ ] Install and [setup git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 
-- [ ] Remove Telegraf dependency from **package.json**.
 - [ ] set the start command in **package.json**:
     ```javascript
     ...
