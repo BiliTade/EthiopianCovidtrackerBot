@@ -1,10 +1,10 @@
 # EthiopianCovidtrackerBot
 
 ## I created this bot for Telegram users.
-   - [ ] Create account on [Mybot](http://t.me/@covidguy_bot).
-   - [ ] Create account on [Framework used](https://telegraf.js.org/#/).
-   - [ ] Create account on [My Telegram channel](https://t.me/ilovetech1).
-   - [ ] Create account on [My youtubechannel](https://t.me/ilovetech1).
+   - [ ] If you wanna check my bot [Mybot](http://t.me/@covidguy_bot).
+   - [ ] Framework used [Telegraf API](https://telegraf.js.org/#/).
+   - [ ] My Telegram channel [I❤️TECH](https://t.me/ilovetech1).
+   - [ ] My youtubechannel on [ILOVETECH](https://t.me/ilovetech1).
    
    
    
