@@ -41,7 +41,7 @@
     ```
 - [ ] Make cahnges in the code.
     - [ ] surround your code with express.JS server like BELOW:
-         ```
+         ```...
  const { Telegraf } = require('telegraf')
 const express = require('express')
 const expressApp = express()
@@ -60,7 +60,7 @@ expressApp.listen(3000, () => {
   console.log('Example app listening on port 3000!')
 })
          
-         
+         ...
          ```
    
   
