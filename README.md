@@ -1,6 +1,13 @@
 # EthiopianCovidtrackerBot
 
-## I created this bot for Telegram users 
+## I created this bot for Telegram users.
+   - [ ] Create account on [Mybot](http://t.me/@covidguy_bot).
+   - [ ] Create account on [Framework used](https://telegraf.js.org/#/).
+   - [ ] Create account on [My Telegram channel](https://t.me/ilovetech1).
+   - [ ] Create account on [My youtubechannel](https://t.me/ilovetech1).
+   
+   
+   
 
  To deploy my bot i used the following step ⬇️
 # Steps to host your Telegram bot
@@ -47,9 +54,9 @@
 const express = require('express') \
 const expressApp = express() \
 
-const API_TOKEN = process.env.API_TOKEN || 'copy paste your Bot token given to you by fatherbot'; \n
+const API_TOKEN = process.env.API_TOKEN || 'copy paste your Bot token given to you by fatherbot'; \
 const PORT = process.env.PORT || 5000;   
-const URL = process.env.URL || 'https://< your heroku app name >.herokuapp.com';\n
+const URL = process.env.URL || 'https://< your heroku app name >.herokuapp.com';\
 
 const bot = new Telegraf(API_TOKEN);
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
